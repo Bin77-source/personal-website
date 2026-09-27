@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bin Xing · Data Science</title>
+<meta name="description" content="Bin Xing — Master of Data Science student at the University of Melbourne. Data analysis, statistics, machine learning.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fbfaf7; --surface:#ffffff; --text:#1c1d21; --muted:#5f6370; --line:#e6e3dc;
+  --accent:#1f6f5c; --accent-soft:#e3f0ec; --shadow:0 1px 2px rgba(0,0,0,.04),0 4px 16px rgba(0,0,0,.04);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121417; --surface:#1a1d21; --text:#e8e9ec; --muted:#9aa0ab; --line:#2a2e34;
+    --accent:#5cc4a6; --accent-soft:#1c2e29; --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121417; --surface:#1a1d21; --text:#e8e9ec; --muted:#9aa0ab; --line:#2a2e34;
+  --accent:#5cc4a6; --accent-soft:#1c2e29; --shadow:none;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font:16px/1.65 Inter,"Noto Sans SC",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header.nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:12px}
+.logo{font-weight:700;color:var(--text);letter-spacing:-.01em}
+.nav ul{display:flex;gap:20px;list-style:none;font-size:14px}
+.nav ul a{color:var(--muted)}
+.nav ul a:hover{color:var(--text);text-decoration:none}
+.tools{display:flex;gap:8px}
+.btn-sm{border:1px solid var(--line);background:var(--surface);color:var(--text);border-radius:8px;padding:5px 10px;font:500 13px Inter,sans-serif;cursor:pointer}
+.btn-sm:hover{border-color:var(--accent)}
+section{padding:72px 0;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:0}
+.hero{padding:96px 0 80px}
+.eyebrow{font:500 13px "JetBrains Mono",monospace;color:var(--accent);letter-spacing:.04em}
+h1{font-size:clamp(34px,6vw,52px);line-height:1.1;letter-spacing:-.025em;margin:12px 0 18px}
+.lead{font-size:18px;color:var(--muted);max-width:620px}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:10px;font-weight:500;font-size:15px;border:1px solid var(--line);color:var(--text);background:var(--surface)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+[data-theme="dark"] .btn.primary{color:#0d1a16}
+.btn:hover{text-decoration:none;transform:translateY(-1px)}
+h2{font-size:26px;letter-spacing:-.015em;margin-bottom:28px;display:flex;align-items:baseline;gap:12px}
+h2 .num{font:500 14px "JetBrains Mono",monospace;color:var(--accent)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:var(--shadow);transition:border-color .2s}
+.card:hover{border-color:var(--accent)}
+.card h3{font-size:17px;margin-bottom:6px;line-height:1.35}
+.card p{color:var(--muted);font-size:14.5px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.tag{font:500 12px "JetBrains Mono",monospace;background:var(--accent-soft);color:var(--accent);padding:3px 8px;border-radius:6px}
+.featured{grid-column:1/-1}
+.label{font:500 12px "JetBrains Mono",monospace;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.timeline{display:flex;flex-direction:column;gap:22px}
+.item{display:grid;grid-template-columns:150px 1fr;gap:20px}
+.item .when{font:14px "JetBrains Mono",monospace;color:var(--muted);padding-top:2px}
+.item h3{font-size:17px}
+.item .where{color:var(--muted);font-size:15px}
+.item ul{margin:8px 0 0 18px;color:var(--muted);font-size:14.5px}
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.skills h3{font-size:14px;color:var(--muted);font-weight:500;margin-bottom:10px}
+.contact{display:flex;flex-wrap:wrap;gap:10px}
+footer{padding:32px 0;color:var(--muted);font-size:13px;text-align:center}
+/* ---------- animations ---------- */
+.hero{position:relative;overflow:hidden}
+.hero .wrap{position:relative;z-index:1}
+.blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.35;z-index:0;animation:float 14s ease-in-out infinite alternate}
+.blob.b1{width:340px;height:340px;background:var(--accent);top:-80px;right:-60px}
+.blob.b2{width:260px;height:260px;background:#d9a441;bottom:-90px;right:28%;animation-duration:18s;animation-delay:-4s;opacity:.22}
+@keyframes float{0%{transform:translate(0,0) scale(1)}50%{transform:translate(-40px,30px) scale(1.1)}100%{transform:translate(20px,-20px) scale(.95)}}
+.hero .eyebrow,.hero h1,.hero .lead,.hero .cta{opacity:0;transform:translateY(18px);animation:up .8s cubic-bezier(.2,.7,.2,1) forwards}
+.hero h1{animation-delay:.12s}.hero .lead{animation-delay:.26s}.hero .cta{animation-delay:.4s}
+@keyframes up{to{opacity:1;transform:none}}
+.caret{display:inline-block;width:2px;height:.9em;background:var(--accent);margin-left:4px;vertical-align:-.08em;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.card{transition:border-color .2s,transform .25s,box-shadow .25s}
+.card:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(0,0,0,.08)}
+.tag{transition:transform .15s}.tag:hover{transform:scale(1.06)}
+.btn{transition:transform .15s,box-shadow .2s}
+.btn.primary:hover{box-shadow:0 6px 18px color-mix(in srgb,var(--accent) 40%,transparent)}
+.progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:20}
+.timeline .item{position:relative}
+.nav ul a{position:relative}
+.nav ul a::after{content:"";position:absolute;left:0;bottom:-4px;height:2px;width:0;background:var(--accent);transition:width .25s}
+.nav ul a:hover::after,.nav ul a.active::after{width:100%}
+.nav ul a.active{color:var(--text)}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .hero .eyebrow,.hero h1,.hero .lead,.hero .cta,.reveal{opacity:1;transform:none}
+}
+[data-lang="zh"] .en{display:none} [data-lang="en"] .zh{display:none}
+@media (max-width:640px){
+  .nav ul{display:none}
+  .item{grid-template-columns:1fr;gap:4px}
+  section{padding:56px 0}.hero{padding:64px 0 56px}
+}
+</style>
+</head>
+<body data-lang="en">
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#top">Bin Xing<span class="zh"> · 邢斌</span></a>
+    <ul>
+      <li><a href="#projects"><span class="en">Projects</span><span class="zh">项目</span></a></li>
+      <li><a href="#experience"><span class="en">Experience</span><span class="zh">经历</span></a></li>
+      <li><a href="#skills"><span class="en">Skills</span><span class="zh">技能</span></a></li>
+      <li><a href="#contact"><span class="en">Contact</span><span class="zh">联系</span></a></li>
+    </ul>
+    <div class="tools">
+      <button class="btn-sm" id="langBtn" aria-label="Switch language">中文</button>
+      <button class="btn-sm" id="themeBtn" aria-label="Toggle theme">◐</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+<div class="progress" id="progress"></div>
+<section class="hero">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="wrap">
+    <div class="eyebrow">&gt; <span id="typed"></span><span class="caret"></span></div>
+    <h1><span class="en">Hi, I'm Bin.<br>I turn messy data into decisions.</span><span class="zh">你好，我是邢斌。<br>把杂乱的数据变成决策依据。</span></h1>
+    <p class="lead">
+      <span class="en">Master of Data Science (Statistics stream) student at the University of Melbourne, graduating mid-2027. Background in financial mathematics. I work across statistical modelling, experimentation, remote sensing and data engineering.</span>
+      <span class="zh">墨尔本大学数据科学硕士（统计方向）在读，预计 2027 年年中毕业；本科为金融数学。关注统计建模、实验设计、遥感数据分析与数据工程。</span>
+    </p>
+    <div class="cta">
+      <a class="btn primary" href="#projects"><span class="en">View projects</span><span class="zh">查看项目</span> →</a>
+      
+      <a class="btn" href="https://github.com/Bin77-source" target="_blank">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <h2><span class="num">01</span><span class="en">Selected Projects</span><span class="zh">精选项目</span></h2>
+    <div class="grid">
+      <article class="card featured">
+        <div class="label"><span class="en">Featured · Industry project</span><span class="zh">重点 · 行业合作项目</span></div>
+        <h3><span class="en">Satellite Detection of Algal Blooms in Wastewater Lagoons</span><span class="zh">基于卫星遥感的污水塘藻华检测</span></h3>
+        <p>
+          <span class="en">With EPA Victoria and Central Highlands Water, used Sentinel-2 imagery to monitor algal blooms at Ballarat South WWTP. Built a Google Earth Engine pipeline extracting per-pond time series, aligned it with lab reports, modelled seasonal baselines with GAMs, and assessed the limits of NDCI and regression approaches.</span>
+          <span class="zh">与维州环保局 (EPA Victoria) 及 Central Highlands Water 合作，利用 Sentinel-2 影像监测 Ballarat South 污水处理厂的藻华。在 Google Earth Engine 中构建逐池塘时间序列提取流程，与实验室检测数据做时间对齐；用 GAM 建模季节性基线，并评估 NDCI 指数与回归模型的局限性。</span>
+        </p>
+        <div class="tags"><span class="tag">Google Earth Engine</span><span class="tag">Sentinel-2</span><span class="tag">Python</span><span class="tag">GAM</span><span class="tag">R</span></div>
+      </article>
+      <article class="card">
+        <h3><span class="en">Financial News Sentiment Pipeline</span><span class="zh">金融新闻情感分析流水线</span></h3>
+        <p><span class="en">Streaming pipeline that ingests financial news via Kafka and classifies sentiment with an LLM (Anthropic SDK).</span><span class="zh">基于 Kafka 的流式数据管道，调用大模型（Anthropic SDK）对金融新闻做情感分类。</span></p>
+        <div class="tags"><span class="tag">Kafka</span><span class="tag">LLM</span><span class="tag">Python</span></div>
+      </article>
+      <article class="card">
+        <h3><span class="en">Marketing A/B Test Analysis</span><span class="zh">营销 A/B 测试分析</span></h3>
+        <p><span class="en">End-to-end experiment analysis: sample-ratio-mismatch checks, two-proportion z-tests and effect size (Cohen's h).</span><span class="zh">完整的实验分析：SRM 样本比例检验、双比例 Z 检验与效应量（Cohen's h）评估。</span></p>
+        <div class="tags"><span class="tag">Statistics</span><span class="tag">pandas</span><span class="tag">SciPy</span></div>
+      </article>
+      <article class="card">
+        <h3><span class="en">Social Media Data Pipeline on the Cloud</span><span class="zh">云上社交媒体数据平台</span></h3>
+        <p><span class="en">Harvested Bluesky/Mastodon data into Elasticsearch via Redis queues, with autoscaling serverless workers on Kubernetes (KEDA) on NeCTAR.</span><span class="zh">采集 Bluesky / Mastodon 数据，经 Redis 队列写入 Elasticsearch；在 NeCTAR 云上用 Kubernetes + KEDA 实现自动扩缩容。</span></p>
+        <div class="tags"><span class="tag">Kubernetes</span><span class="tag">KEDA</span><span class="tag">Elasticsearch</span><span class="tag">Redis</span></div>
+      </article>
+      <article class="card">
+        <h3><span class="en">Airline Database Optimisation</span><span class="zh">航空数据库查询优化</span></h3>
+        <p><span class="en">Profiled slow queries with EXPLAIN and redesigned indexes and SQL to cut execution cost on a MySQL airline schema.</span><span class="zh">使用 EXPLAIN 分析慢查询，优化索引与 SQL 写法，降低 MySQL 航空数据库的执行开销。</span></p>
+        <div class="tags"><span class="tag">MySQL</span><span class="tag">SQL</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <h2><span class="num">02</span><span class="en">Education & Experience</span><span class="zh">教育与经历</span></h2>
+    <div class="timeline">
+      <div class="item">
+        <div class="when">2025 – 2027</div>
+        <div>
+          <h3><span class="en">Master of Data Science (Statistics)</span><span class="zh">数据科学硕士（统计方向）</span></h3>
+          <div class="where"><span class="en">University of Melbourne</span><span class="zh">墨尔本大学</span></div>
+          <ul>
+            <li><span class="en">Statistical Machine Learning, Bayesian Statistical Learning, Computational Statistics, Cluster & Cloud Computing, Advanced Database Systems</span><span class="zh">统计机器学习、贝叶斯统计学习、计算统计、集群与云计算、高级数据库系统</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="item">
+        <div class="when">2026</div>
+        <div>
+          <h3><span class="en">Industry Data Science Project</span><span class="zh">行业数据科学项目</span></h3>
+          <div class="where">EPA Victoria · Central Highlands Water</div>
+          <ul><li><span class="en">Satellite-based algal bloom detection (see Projects).</span><span class="zh">基于卫星影像的藻华检测（见项目）。</span></li></ul>
+        </div>
+      </div>
+      <div class="item">
+        <div class="when">2019 – 2024</div>
+        <div>
+          <h3><span class="en">BSc Financial Mathematics, Minor in Data Science</span><span class="zh">金融数学学士，辅修数据科学</span></h3>
+          <div class="where"><span class="en">University of Victoria, Canada</span><span class="zh">加拿大维多利亚大学</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <h2><span class="num">03</span><span class="en">Skills</span><span class="zh">技能</span></h2>
+    <div class="skills">
+      <div><h3><span class="en">Languages</span><span class="zh">编程语言</span></h3><div class="tags"><span class="tag">Python</span><span class="tag">R</span><span class="tag">SQL</span><span class="tag">JavaScript</span></div></div>
+      <div><h3><span class="en">Stats & ML</span><span class="zh">统计与机器学习</span></h3><div class="tags"><span class="tag">A/B testing</span><span class="tag">Bayesian</span><span class="tag">GAM</span><span class="tag">scikit-learn</span><span class="tag">Regression</span></div></div>
+      <div><h3><span class="en">Data & Cloud</span><span class="zh">数据与云</span></h3><div class="tags"><span class="tag">Kafka</span><span class="tag">Kubernetes</span><span class="tag">Elasticsearch</span><span class="tag">MySQL</span><span class="tag">Hive</span></div></div>
+      <div><h3><span class="en">Geospatial</span><span class="zh">地理空间</span></h3><div class="tags"><span class="tag">Earth Engine</span><span class="tag">Sentinel-2</span><span class="tag">GeoPandas</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <h2><span class="num">04</span><span class="en">Get in touch</span><span class="zh">联系我</span></h2>
+    <p class="lead" style="margin-bottom:22px"><span class="en">Open to data analyst / data scientist roles and internships in Australia. Based in Melbourne.</span><span class="zh">正在寻找澳洲的数据分析 / 数据科学岗位与实习机会，现居墨尔本。</span></p>
+    <div class="contact">
+      <a class="btn primary" href="mailto:victorxing85@gmail.com">Email</a>
+      <a class="btn" href="https://github.com/Bin77-source" target="_blank">GitHub</a>
+      <a class="btn" href="https://www.linkedin.com/in/bin-xing-897437276/" target="_blank">LinkedIn</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>© <span id="yr"></span> Bin Xing · Melbourne</footer>
+
+<script>
+(function(){
+  var root=document.documentElement, body=document.body;
+  function get(k){try{return localStorage.getItem(k)}catch(e){return null}}
+  function set(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+  // language
+  var lang=get('lang')||((navigator.language||'').startsWith('zh')?'zh':'en');
+  var lb=document.getElementById('langBtn');
+  function applyLang(l){body.dataset.lang=l;root.lang=l==='zh'?'zh-CN':'en';lb.textContent=l==='zh'?'EN':'中文';set('lang',l)}
+  applyLang(lang);
+  lb.onclick=function(){applyLang(body.dataset.lang==='en'?'zh':'en')};
+  // theme
+  var t=get('theme'); if(t) root.dataset.theme=t;
+  document.getElementById('themeBtn').onclick=function(){
+    var dark=root.dataset.theme?root.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;
+    root.dataset.theme=dark?'light':'dark'; set('theme',root.dataset.theme);
+  };
+  document.getElementById('yr').textContent=new Date().getFullYear();
+
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // typing eyebrow
+  var words=['DATA SCIENCE','STATISTICS','MACHINE LEARNING','REMOTE SENSING','DATA ENGINEERING'];
+  var el=document.getElementById('typed'), wi=0, ci=0, del=false;
+  if(reduce){el.textContent=words.join(' · ')} else (function tick(){
+    var w=words[wi]; ci+=del?-1:1; el.textContent=w.slice(0,ci);
+    var d=del?45:90;
+    if(!del&&ci===w.length){del=true;d=1400}
+    else if(del&&ci===0){del=false;wi=(wi+1)%words.length;d=300}
+    setTimeout(tick,d);
+  })();
+  // scroll reveal with stagger
+  var targets=document.querySelectorAll('section:not(.hero) h2, .card, .timeline .item, .skills > div, #contact .lead, .contact');
+  targets.forEach(function(t){
+    t.classList.add('reveal');
+    var sibs=Array.prototype.indexOf.call(t.parentNode.children,t);
+    t.style.transitionDelay=Math.min(sibs,5)*80+'ms';
+  });
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+    targets.forEach(function(t){io.observe(t)});
+  } else targets.forEach(function(t){t.classList.add('in')});
+  // progress bar + active nav
+  var bar=document.getElementById('progress'), links=document.querySelectorAll('.nav ul a');
+  function onScroll(){
+    var h=document.documentElement; bar.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+    var cur='';document.querySelectorAll('main section[id]').forEach(function(s){if(s.getBoundingClientRect().top<120)cur=s.id});
+    links.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+cur)});
+  }
+  addEventListener('scroll',onScroll,{passive:true}); onScroll();
+})();
+</script>
+</body>
+</html>
